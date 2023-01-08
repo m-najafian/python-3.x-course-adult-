@@ -1,0 +1,25 @@
+kind: ExternalService
+name: learninghive
+spec:
+  allow_http: true
+  domains:
+    - name: www.learninghive.ir
+  image: learninghive
+  image_pull_policy: Always
+  path: /
+  port: 80
+  replicas: 1
+  resources:
+    memory: 200Mi
+  source:
+    context: .
+    media_path: media
+    project_type: django
+    python_version: '3.8'
+    resources:
+      memory: 2000Mi
+    static_path: static
+    wsgi: ecommerce.wsgi
+  volume_mounts:
+    - mount_path: /usr/src/app/media
+      sub_path: learninghive/media
